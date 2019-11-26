@@ -151,7 +151,7 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin.min.js"></script>
 
-<!-- ESSE E ORIGINAL JOHN-->
+<!-- ESSE E ORIGINAL JOHN PARA CUIDAR DO MAPA-->
 <script src="carrega_endereco.js"></script> 
 <script src="location.js"></script>
 
