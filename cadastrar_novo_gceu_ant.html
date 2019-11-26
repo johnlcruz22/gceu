@@ -1,0 +1,39 @@
+<html>
+
+<head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+<title> Cadastro de Gceu </title>
+
+</head>
+
+<body>
+
+<form method="POST" action="cadastrar_novo_gceu.php">
+
+
+Pagina cadastro <br><br>
+
+<label>Nome:      </label><input type="text"   name="nome"      id="nome"     required> <br>
+<label>Endereço:  </label><input type="text"   name="endereco"  id="endereco" required> <br>
+<label>Professor: </label><input type="text"   name="professor" id="professor"required> <br>
+<label>Anfitrião: </label><input type="text"   name="anfitriao" id="anfitriao"required> <br>
+<label>Horário:   </label><input type="time"   name="horario"   id="horario"  required> <br>
+<label>Dia semana:</label>
+<select name="semana" id="semana">
+   <option value="Segunda-feira">Segunda-feira</option>
+   <option value="Terca-feira">  Terça-feira  </option>
+   <option value="Quarta-feira"> Quarta-feira </option>
+   <option value="Quinta-feira"> Quinta-feira </option>
+   <option value="Sexta-feira">  Sexta-feira  </option>
+   <option value="Sabado">       Sábado       </option>
+   <option value="Domingo">      Domingo      </option>
+</select>
+ 
+ <!-- $sql = "INSERT INTO registro_ponto (codigo,data,evento) VALUES ('$codigo', 'NOW()','$evento')";-->
+
+<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+
+</form>
+
+</body>
+
+</html>

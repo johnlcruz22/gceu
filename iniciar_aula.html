@@ -1,0 +1,183 @@
+<!-- Breadcrumbs
+
+-->
+
+<script type="text/javascript" src="jquery-1.6.4_min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#gceu').change(function () {
+            $('#nome').load('carrega_lista_presenca.php?estado='+ encodeURI($('#gceu').val()), function (data) {
+                console.log(data);
+                this.innerHTML(data);
+            });
+            $('#apoio').load('carrega_apoio.php?estado='+ encodeURI($('#gceu').val()), function (data) {
+                console.log(data);
+                this.innerHTML(data);
+            });
+            $('#professor').load('carrega_professor.php?estado='+ encodeURI($('#gceu').val()), function (data) {
+                console.log(data);
+                this.innerHTML(data);
+            });
+
+
+
+        });
+    });
+</script>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="index.php?idpage=ini">Iniciar Aula</a>
+    </li>
+    <li class="breadcrumb-item active">Lista de presença</li>
+</ol>
+
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header text-center">Iniciar Aula</div>
+        <div class="card-body">
+            <form method="POST" action="iniciar_aula.php">
+                <div class="form-group">
+                    <div class="form-label-group">
+
+                        <select name="gceu" id="gceu" class="custom-select" required="required">
+                            <?php
+                                include 'conexao.php';
+                                $obj            = new conexao;
+                                $connect1       = $obj->conecta();
+                                $query_select = "SELECT * FROM gceu;";
+                                //criando a query de consulta à tabela criada
+                                $sql = mysqli_query($connect1, $query_select) or die(
+                                mysqli_error($connect1) //caso haja um erro na consulta
+                                );
+                            ?>
+
+                            <?php while($aux = mysqli_fetch_assoc($sql)) { ?>
+                            <option value="<?php echo $aux['nome_gceu'] ?>"> <?php echo $aux['nome_gceu']; ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" aria-placeholder="Tema" name="tema" id="tema" class="form-control"
+                               placeholder="true" required="required">
+                        <label for="Tema">Tema</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="date" name="data" id="data" class="form-control"
+                               placeholder="Data" required="required">
+                        <label for="Data">Data</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <select name="professor" id="professor" class="custom-select" required="required">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Lista de presença">Lista de presença</label>
+                    <div class="form-label-group">
+
+                        <select multiple="multiple"  name="nome[]" id="nome"
+                                class="custom-select" required="required">
+                            <!-- SERA PREENCHIDO AUTOMATICAMENTE-->
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Prestar apoio">Prestar apoio</label>
+                    <div class="form-label-group">
+
+                        <select name="apoio" id="apoio"
+                                class="custom-select" required="required">
+                            <!-- SERA PREENCHIDO AUTOMATICAMENTE-->
+                        </select>
+
+                    </div>
+                </div>
+
+
+
+                <button class="btn btn-primary btn-block" type="submit" value="Iniciar aula" id="Iniciar aula"
+                        name="Iniciar aula"
+                >Iniciar aula
+                </button>
+            </form>
+            <!--div class="text-center">
+                <a class="d-block small mt-3" href="register.html">Voltar a pagina </a>
+                <a class="d-block small" href="forgot-password.html">Não lembra a senha ?</a>
+            </div-->
+        </div>
+    </div>
+</div>
+
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Lista de presença
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>GCEU</th>
+                    <th>Tema</th>
+                    <th>Data da presença</th>
+                    <th>Lider</th>
+                    <th>Apoio</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Nome</th>
+                    <th>GCEU</th>
+                    <th>Tema</th>
+                    <th>Data da presença</th>
+                    <th>Lider</th>
+                    <th>Apoio</th>
+                </tr>
+                </tfoot>
+                <tbody>
+
+                <?php
+
+                $obj            = new conexao;
+                $connect1       = $obj->conecta();
+                $query_select = "SELECT * FROM lista_presenca;";
+                //criando a query de consulta à tabela criada
+                $sql = mysqli_query($connect1, $query_select) or die(
+                mysqli_error($connect1) //caso haja um erro na consulta
+                );
+                ?>
+
+                <?php while($aux = mysqli_fetch_assoc($sql)) { ?>
+                <tr>
+                    <td> <?php echo $aux['aluno'] ?> </td>
+                    <td> <?php echo $aux['gceu'] ?> </td>
+                    <td> <?php echo $aux['tema'] ?> </td>
+                    <td> <?php echo $aux['datapresenca'] ?> </td>
+                    <td> <?php echo $aux['professor'] ?> </td>
+                    <td> <?php echo $aux['apoio'] ?> </td>
+
+                <?php } ?>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">ultima atualização 00:00:00</div>
+</div>
+
+<p class="small text-center text-muted my-5">
+    <em>Lista de presença temporária</em>
+</p>

@@ -1,0 +1,5 @@
+[config_conexao]
+portaip  = "localhost"
+host     = "id11227220_metodista"
+senha    = "metodista"
+database = "id11227220_bancogceu"

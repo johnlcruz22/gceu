@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header text-center">Cadastro Gceu</div>
+        <div class="card-body">
+            <form method="POST" action="cadastrar_novo_gceu.php">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome"
+                               required="required" autofocus="autofocus">
+                        <label for="Nome:">Nome</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="cep" id="cep" class="form-control"
+                               placeholder="CEP" required="required">
+                        <label for="CEP">CEP</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="endereco" id="endereco" class="form-control"
+                               placeholder="Endereco" required="required">
+                        <label for="Endereço">Endereço</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="numero" id="numero" class="form-control"
+                               placeholder="Numero" required="required">
+                        <label for="Numero">Numero</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="cidade" id="cidade" class="form-control"
+                               placeholder="Cidade" required="required">
+                        <label for="Cidade">Cidade</label>
+                    </div>
+                </div>                
+
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="latlong" id="latlong" class="form-control"
+                               placeholder="latlong" required="required">
+                        <label for="LatLong">LatLong</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="professor" id="professor" class="form-control" placeholder="Nome"
+                               required="required" autofocus="autofocus">
+                        <label for="Lider:">Lider</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="anfitriao" id="anfitriao" class="form-control" placeholder="Nome"
+                               required="required" autofocus="autofocus">
+                        <label for="Anfitrião:">Anfitrião</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="time" name="horario" id="horario" class="form-control" placeholder="Nome"
+                               required="required" autofocus="autofocus">
+                        <label for="Horário">Horário</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <select  name="semana" id="semana" class="custom-select" id="inputGroupSelect01" required="required">
+                            <option selected>Dia da semana</option>
+                            <option value="Segunda-feira">Segunda-feira</option>
+                            <option value="Terca-feira">  Terça-feira  </option>
+                            <option value="Quarta-feira"> Quarta-feira </option>
+                            <option value="Quinta-feira"> Quinta-feira </option>
+                            <option value="Sexta-feira">  Sexta-feira  </option>
+                            <option value="Sabado">       Sábado       </option>
+                            <option value="Domingo">      Domingo      </option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" type="submit" value="Cadastrar" id="cadastrar" name="cadastrar"
+                >Cadastrar
+                </button>
+            </form>
+            <!--div class="text-center">
+                <a class="d-block small mt-3" href="register.html">Voltar a pagina </a>
+                <a class="d-block small" href="forgot-password.html">Não lembra a senha ?</a>
+            </div-->
+
+
+        </div>
+    </div>
+</div>
+
