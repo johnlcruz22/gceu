@@ -2,7 +2,7 @@
 session_start();
 /* inicia a sessão */
 
-var_dump($_SESSION['sessiontime']);
+//var_dump($_SESSION['sessiontime']);
 
 if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
     if ($_SESSION["sessiontime"] < time() ) {
