@@ -1,13 +1,19 @@
 
 <script type="text/javascript" src="jquery-1.6.4_min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#acesso').change(function () {
-            $('#acesso').load('autorizacao.php?acesso='+ encodeURI($('#acesso').val()), function (data) {
+
+    $(document).ready(function(){
+      $.each( $( ".custom-select" ), function() {
+         $('#'+this.id).change(function(){
+            $('#'+this.id).load('autorizacao.php?acesso='+ encodeURI($('#'+this.id).val()), 
+                function(data){
                 console.log(data);
                 this.innerHTML(data);
-            });
-         });
+
+             });
+              location.reload(true);
+           });
+        });
     });
 
 
@@ -53,7 +59,7 @@
                     <tbody id="todossel">
 
                     <?php
-                    $icont = 0;
+                    $elementos = 0;
                     include 'conexao.php';
                     $obj            = new conexao;
                     $connect1       = $obj->conecta();
@@ -72,26 +78,26 @@
                         <td> <?php echo $aux['email'] ?> </td>
                         <td>
                             <div class="form-group">
-                                <div class="form-label-group" >
-                                    <select name="acesso" id="acesso"  class="custom-select" id="inputGroupSelect01" >
+                                <div class="form-label-group" id="acesso" >
+                                    <select name="acesso" id="acesso<?php echo $elementos?>"  class="custom-select">
                                       <?php if ($aux['liberado'] == 0)      { ?>
-                                        <option value="<?php echo $aux['email'] ?>&valor=1">  Lider   </option>
-                                        <option value="<?php echo $aux['email'] ?>&valor=3">  Master  </option>
-                                        <option value="<?php echo $aux['email'] ?>&valor=0" selected>  Nenhuma autorização  </option>
+                                        <option value="<?php echo $aux['email'] ?>;1">  Lider   </option>
+                                        <option value="<?php echo $aux['email'] ?>;3">  Master  </option>
+                                        <option value="<?php echo $aux['email'] ?>;0" selected>  Nenhuma autorização  </option>
                                       <?php }else if ($aux['liberado'] == 1){ ?>
-                                        <option value="<?php echo $aux['email'] ?>&valor=1" selected>  Lider   </option>
-                                        <option value="<?php echo $aux['email'] ?>&valor=3">  Master  </option>
-                                        <option value="<?php echo $aux['email'] ?>&valor=0">  Nenhuma autorização  </option>
+                                        <option value="<?php echo $aux['email'] ?>;1" selected>  Lider   </option>
+                                        <option value="<?php echo $aux['email'] ?>;3">  Master  </option>
+                                        <option value="<?php echo $aux['email'] ?>;0">  Nenhuma autorização  </option>
                                       <?php }else if ($aux['liberado'] == 3){ ?>
-                                        <option value="<?php echo $aux['email'] ?>&valor=1">  Lider   </option>
-                                        <option value="<?php echo $aux['email'] ?>&valor=3" selected>  Master  </option>
-                                        <option value="<?php echo $aux['email'] ?>&valor=0">  Nenhuma autorização  </option>
-                                      <?php } $icont++; ?>
+                                        <option value="<?php echo $aux['email'] ?>;1">  Lider   </option>
+                                        <option value="<?php echo $aux['email'] ?>;3" selected>  Master  </option>
+                                        <option value="<?php echo $aux['email'] ?>;0">  Nenhuma autorização  </option>
+                                      
                                     </select>
 
                                 </div>
                         </td>
-
+                        <?php } $elementos++; ?>
                         <?php } ?>
                     </tr>
 

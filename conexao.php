@@ -40,6 +40,7 @@
 	    }
        else{
 		    return false;
+		    echo "Erro" . $mysqli->error . "\n";
 	    }
 	 }
 

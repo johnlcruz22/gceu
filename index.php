@@ -157,7 +157,120 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
 
 <!-- Demo scripts for this page-->
 <script src="js/demo/datatables-demo.js"></script>
-<script src="js/demo/chart-area-demo.js"></script>
+<!--script src="js/demo/chart-area-demo.js"></script>
+<!-- GRAFICO DE LINHAS-->
+<script type="text/javascript">
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+
+    <?php
+    include 'conexao.php';
+    $obj = new conexao;
+    $connect1 = $obj->conecta();
+    $query_select       = "select nome_gceu, (select count(nome) from aluno where nome_gceu = gceu) as qtde_alunos, (select AVG(distinct((select count(nome) from aluno where nome_gceu = gceu))) from gceu) as media from gceu;";
+    //$query_select_media = "select AVG(distinct((select count(nome) from aluno where nome_gceu = gceu))) as media from gceu;";
+
+    $sql = mysqli_query($connect1, $query_select) or die(
+    mysqli_error($connect1) //caso haja um erro na consulta
+    );
+    $media_calc    = 0;
+    $pcont_label   = 1;
+    $label_virgula ="";
+    $data_virgula  ="";
+    $media_virgula ="";
+    $qtde          = mysqli_num_rows($sql);
+
+    while ($aux = mysqli_fetch_assoc($sql)) {
+
+    if($pcont_label!=$qtde){
+     $label_virgula .= '"'.$aux['nome_gceu'].'"'.",";
+     $data_virgula  .= '"'.$aux['qtde_alunos'].'"'.",";
+    }else{
+     $label_virgula .= '"'.$aux['nome_gceu'].'"';
+     $data_virgula  .= '"'.$aux['qtde_alunos'].'"';
+     $media12        =     $aux['media'];
+    }
+
+     ?>
+     eval("jcont_label_"+<?php echo $pcont_label;?> + "= '<?php echo $aux['nome_gceu']?>';");
+    <?php $pcont_label++;}
+
+    $teste = implode(',', array_fill(0, $qtde, '"'.$media12.'"'));
+
+    ?>
+
+    //alert(<?php echo ($teste)?>);
+
+    // Area Chart Example
+    var ctx = document.getElementById("myAreaChart");
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [<?php echo $label_virgula;?>],
+            datasets: [{
+                label: "Nº de Alunos",
+                lineTension: 0.3,
+                backgroundColor: "rgba(2,117,216,0.2)",
+                borderColor: "rgba(2,117,216,1)",
+                pointRadius: 4,
+                pointBackgroundColor: "rgba(2,117,216,1)",
+                pointBorderColor: "rgba(255,255,255,0.8)",
+                pointHoverRadius: 7,
+                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                pointHitRadius: 50,
+                pointBorderWidth: 2,
+                data: [<?php echo $data_virgula;?>],
+            },
+                {
+                    labels: [<?php echo $label_virgula;?>],
+                    label: "Média de Alunos",
+                    lineTension: 0,
+                    backgroundColor: "rgba(2,2,216,0.2)",
+                    borderColor: "rgba(2,2,216,1)",
+                    pointRadius: 4,
+                    pointBackgroundColor: "rgba(2,2,216,1)",
+                    pointBorderColor: "rgba(255,255,255,0.8)",
+                    pointHoverRadius: 7,
+                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                    pointHitRadius: 50,
+                    pointBorderWidth: 2,
+                    data:[<?php echo ($teste)?>],
+
+                }
+            ],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'date'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: <?php echo $qtde; $obj->fecha_conexao($connect1) ?>,
+                        maxTicksLimit: 7
+                    },
+                    gridLines: {
+                        color: "rgba(0, 0, 0, .125)",
+                    }
+                }],
+            },
+            legend: {
+                display: true
+            }
+        }
+    });
+
+</script>
 
 </body>
 
