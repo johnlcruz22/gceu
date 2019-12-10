@@ -47,9 +47,9 @@
 	 public function select($conexao,$str_select) //FAZ SELECT
 	 {
 	  if ($result = mysqli_query($conexao, $str_select)) {
-		$linha  = mysqli_fetch_array($result);
-		$qtde   = mysqli_num_rows($result);
-		$array  = array('array_retornado' => $linha, 'result_query' => $result, 'qtde_linhas' => $qtde);
+		$linha    = mysqli_fetch_array($result);
+		$qtde     = mysqli_num_rows($result);
+		$array    = array('array_retornado' => $linha, 'result_query' => $result, 'qtde_linhas' => $qtde);
 		return $array;
 	   }
       else {
