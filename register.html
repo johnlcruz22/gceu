@@ -16,6 +16,11 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <style>
+  el.error{
+  background-color: red;
+   }
+  </style>
 
 </head>
 
@@ -25,46 +30,52 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Register an Account</div>
       <div class="card-body">
-        <form method="POST" action="cadastro_login.php">
+        <form method="POST" id="formulario" action="cadastro_login.php">
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="text" id="nome" name="nome" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                  <label for=nome>Nome</label>
+                 <input type="text" id="nome" name="nome" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                 <label for=nome>Nome</label>
+                  <span></span>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
                   <input type="text" id="sobrenome" name="sobrenome" class="form-control" placeholder="Last name" required="required">
                   <label for=sobrenome>Sobrenome</label>
+                  <span></span>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group">
             <div class="form-label-group">
-              <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="required">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="required" >
               <label for=email>Email</label>
+              <span></span>
             </div>
           </div>
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="password" id="senha" name="senha" class="form-control" placeholder="Password" required="required">
+                  <input type="password" id="senha" name="senha" class="form-control" placeholder="Password" required="required" >
                   <label for=senha>Password</label>
+                  <span></span>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required"
-                   data-match="#inputPassword" data-match-error="Atenção! As senhas não estão iguais.">
-                  <div class="help-block with-errors"></div>
-                  <label for=confirmPassword>Confirmar password</label>
+                  <input type="password" name="confirmar_senha" id="confirmar_senha" class="form-control" placeholder="confirmar_senha" required="required">
+                  <label for=confirmar_senha>Confirmar password</label>
+                  <span></span>
                 </div>
               </div>
+
+             </div>
             </div>
+             <span id="msg"></span>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Solicitar acesso</button>
         </form>
@@ -76,12 +87,82 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+ var validator = $("#formulario").bind("invalid-form.validate",function(){
+    $("#msg").html("Este formulario tem "+ validator.numberOfInvalids()+" erro(s)");
+   
+  }).validate({
+     errorElement:"el",
+     errorPlacement: function(error, element) {
+      console.log('Debug:' +  error);
+      /*here we add the error label to the div that is after the br tag 
+      using the next method provided by jquery to navigate on the DOM*/     
+      error.appendTo(element.next().next());
+    },
+      rules: {
+        nome: {
+        required: true,
+        minlength: 3
+      },
+        sobrenome: {
+        required: true,
+        minlength: 3
+      },
+
+      email: {
+        required: true,
+        email: true
+      },
+      senha: {
+        required: true
+      },
+      confirmar_senha: {
+        required: true,
+        equalTo: "#senha"
+      },
+      termos: "required"
+    },
+    messages: {
+      nome: {
+        required: "O campo nome é obrigatório.",
+        minlength: "O campo nome deve conter no mínimo 3 caracteres."
+      },
+      sobrenome: {
+        required: "O campo sobrenome é obrigatório.",
+        minlength: "O campo sobrenome deve conter no mínimo 3 caracteres."
+      },
+
+      email: {
+        required: "O campo email é obrigatório.",
+        email: "O campo email deve conter um email válido."
+      },
+      senha: {
+        required: "O campo senha é obrigatório."
+      },
+      confirmar_senha: {
+        required: "O campo confirmação de senha é obrigatório.",
+        equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
+      },
+      termos: "Para se cadastrar você deve aceitar os termos de contrato."
+    }
+  });
+});
+</script>
+
+
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-validation/dist/jquery.validate.js"></script>
+  <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
 
 </body>
 

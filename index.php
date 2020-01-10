@@ -9,10 +9,12 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
         session_unset();
         echo "<script language='javascript' type='text/javascript'>alert('Seu tempo Expirou!');window.location.href='login.html';</script>";
         header("Location: login.html"); // Chamar um form de login por exemplo.
+        $idUsuario = $_SESSION['login'];
         //Redireciona para login
     } else {
         //Seta mais tempo 60 segundos
         $_SESSION["sessiontime"] = time() + 600;
+         $idUsuario = $_SESSION['login'];
     }
 } else {
     session_unset();

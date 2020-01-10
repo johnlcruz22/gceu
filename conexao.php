@@ -40,7 +40,7 @@
 	    }
        else{
 		    return false;
-		    echo "Erro" . $mysqli->error . "\n";
+		    echo "Erro" . $conexao->error . "\n";
 	    }
 	 }
 
@@ -53,7 +53,7 @@
 		return $array;
 	   }
       else {
-		echo "Erro: " . $mysqli->error . "\n";
+		echo "Erro: " . $conexao->error . "\n";
 	  }	  
 		  
 	 }
@@ -64,7 +64,7 @@
 		 return null;
 	   }
       else {
-		echo "Erro: " . $mysqli->error . "\n";
+		echo "Erro: " . $conexao->error . "\n";
 	  }	  
 
 	 }
