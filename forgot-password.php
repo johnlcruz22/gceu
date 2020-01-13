@@ -64,16 +64,15 @@
   if(!$mail->Send()){
     echo "Erro ao enviar Email:" . $mail->ErrorInfo;
     // configuração do email a ver enviado.
-    echo '<p>Foi enviado um e-mail para o seu endereço, onde poderá encontrar um link único para alterar a sua password</p>';
-    echo '<p>Houve um erro ao enviar o email (o servidor suporta a função mail?)</p>';
+    //echo '<p>Foi enviado um e-mail para o seu endereço, onde poderá encontrar um link único para alterar a sua password</p>';
+    //echo '<p>Houve um erro ao enviar o email (o servidor suporta a função mail?)</p>';
    // Apenas para testar o link, no caso do e-mail falhar
-    echo '<p>Link: '.$link.' (apresentado apenas para testes; nunca expor a público!)</p>';
+    //echo '<p>Link: '.$link.' (apresentado apenas para testes; nunca expor a público!)</p>';
     }
    else{
     $limpa =+ "login.html";
     echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Você recebera um e-mail em pouco tempo verifique também a caixa de spam.');
-    window.alert('$inicial');
     window.location.href='$inicial';
     </SCRIPT>");
     } 

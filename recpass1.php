@@ -28,12 +28,8 @@
  <?php
     $linkauto = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $limpa    =  strstr($linkauto,'=');
-    echo $linkauto;
-    echo $limpa;
     
-    var_dump($limpa);
  ?>
-
   <div class="container">
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Reset Password</div>
@@ -42,7 +38,7 @@
           <h4>Digite uma nova senha:</h4>
        <span id="msg"></span>
         </div>
-        <form id="formulario" method="POST" action="<?php echo 'recpass.php?email='.$confemail ?>" >
+        <form id="formulario" method="POST" action="<?php echo 'recpass.php?email'.$limpa ?>" >
 
          <div class="form-group">
               <div class="form-label-group">
