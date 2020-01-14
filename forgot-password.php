@@ -12,6 +12,8 @@
  $ini      = parse_ini_file('enviar_email.ini');
  $emailenv = $ini['email'];
  $senhaenv = $ini['senha'];
+ var_dump($emailenv);
+ var_dump($senhaenv);
  
  ini_set('default_charset', 'UTF-8');
  $obj          = new conexao;

@@ -37,7 +37,7 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
 
-    <title>SB Admin - Charts</title>
+    <title>Graficos uteis</title>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
