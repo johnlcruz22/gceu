@@ -18,17 +18,6 @@
  $query_select  = "SELECT nome_gceu FROM gceu WHERE nome_gceu = '$nome'";
  $logarray      = $obj->select($connect,$query_select)['array_retornado']['nome_gceu'];
 
-var_dump($nome);
-var_dump($endereco);
-var_dump($professor);
-var_dump($anfitriao);
-var_dump($horario);
-var_dump($semana);
-var_dump($latlong);
-var_dump($datacad);
-var_dump($logarray);
-
-
  
   if($nome == ""   || $endereco == ""   || $professor == ""   ||  $anfitriao == ""   || $horario == ""   ||  $semana == "" || 
      $nome == null || $endereco == null || $professor == null ||  $anfitriao == null || $horario == null ||  $semana == null)
@@ -57,7 +46,7 @@ var_dump($logarray);
         echo"<script language='javascript' type='text/javascript'>alert('Gceu cadastrado com sucesso!');window.location.href='index.php?idpage=gce'</script>";
      }else 
 	 {
-        echo"<script language='javascript' type='text/javascript'>alert('Nao foi possivel cadastrar esse Gceu');";//window.location.href='index.php?idpage=gce'</script>";
+        echo"<script language='javascript' type='text/javascript'>alert('Nao foi possivel cadastrar esse Gceu');window.location.href='index.php?idpage=gce'</script>";
      }
      }
 
