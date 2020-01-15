@@ -12,8 +12,8 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
         $idUsuario = $_SESSION['login'];
         //Redireciona para login
     } else {
-        //Seta mais tempo 60 segundos
-        $_SESSION["sessiontime"] = time() + 600;
+        //Seta mais tempo 10000 segundos
+        $_SESSION["sessiontime"] = time() + 10000;
          $idUsuario = $_SESSION['login'];
     }
 } else {

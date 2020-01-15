@@ -1,15 +1,15 @@
 <?php
 //header("Content-Type: text/html; charset=ISO-8859-1", true);
 session_start();
-$_SESSION["sessiontime"] = time() + 60;
+$_SESSION["sessiontime"] = time() + 10000;
 
 include 'conexao.php';
-$login =  $_POST['email'];
-$entrar = $_POST['entrar'];
-$senha  = md5($_POST['senha']);
+$login     = $_POST['email'];
+$entrar    = $_POST['entrar'];
+$senha     = md5($_POST['senha']);
 $podelogar = 0;
-$obj = new conexao;
-$connect = $obj->conecta();
+$obj       = new conexao;
+$connect   = $obj->conecta();
 
 
 if (isset($entrar)) {
@@ -29,7 +29,7 @@ if (isset($entrar)) {
             
             $_SESSION['acesso'] = $obj->select($connect, $query_select)['array_retornado']['liberado'];
             $_SESSION['login']  = $login;
-            $_SESSION['nome']  = $obj->select($connect, $query_select)['array_retornado']['nome'];
+            $_SESSION['nome']   = $obj->select($connect, $query_select)['array_retornado']['nome'];
             $_SESSION['status'] = "LOGADO";
             
             echo "<script language='javascript' type='text/javascript'>alert('BEM VINDO ');window.location.href='index.php';</script>";

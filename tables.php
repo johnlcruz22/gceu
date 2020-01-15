@@ -1,21 +1,27 @@
 <?php
-session_cache_limiter('private');
-$cache_limiter = session_cache_limiter();
-
-/* define o prazo do cache em 30 minutos */
-session_cache_expire(1);
-$cache_expire = session_cache_expire();
-
+session_start();
 /* inicia a sessão */
 
-session_start();
-if (($_SESSION['status'] != 'LOGADO') and ($_SESSION['acesso'] != 0)){
+//var_dump($_SESSION['sessiontime']);
 
-    header("Location: login.html"); // Chamar um form de login por exemplo.
+if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
+    if ($_SESSION["sessiontime"] < time() ) {
+        session_unset();
+        echo "<script language='javascript' type='text/javascript'>alert('Seu tempo Expirou!');window.location.href='login.html';</script>";
+        header("Location: login.html"); // Chamar um form de login por exemplo.
+        $idUsuario = $_SESSION['login'];
+        //Redireciona para login
+    } else {
+        //Seta mais tempo 10000 segundos
+        $_SESSION["sessiontime"] = time() + 10000;
+         $idUsuario = $_SESSION['login'];
+    }
 } else {
-    $idUsuario = $_SESSION['nome'];
-    session_abort();
+    session_unset();
+    header("Location: login.html"); // Chamar um form de login por exemplo.
+    //Redireciona para login
 }
+
 
 ?>
 

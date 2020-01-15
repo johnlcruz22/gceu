@@ -10,7 +10,7 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
         //Redireciona para login
     } else {
         //Seta mais tempo 60 segundos
-        $_SESSION["sessiontime"] = time() + 60;
+        $_SESSION["sessiontime"] = time() + 10000;
     }
 } else {
     session_unset();
@@ -54,8 +54,14 @@ if ( isset( $_SESSION["sessiontime"]) or is_null($_SESSION["sessiontime"])) {
 <div id="wrapper">
 
 
-    <!-- Sidebar -->
-    <?php include('barra_lateral.html') ?>
+ <?php
+
+    if ($_SESSION['acesso'] == 3){
+        include ('barra_lateral.html');
+    }else{
+        include ('barra_lateral_'.$_SESSION['acesso'].'.html');
+    }
+    ?>
 
     <div id="content-wrapper">
 
